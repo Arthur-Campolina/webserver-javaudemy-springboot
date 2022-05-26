@@ -21,8 +21,8 @@ public class UserController {
     //controlador rest que responde no caminho /users
     @GetMapping//endpoint pra acessar os usuarios
     //ResponseEntity é do tipo generics, retorno de tipo especifico para requisicoes do tipo web.
-    public ResponseEntity<Page<User>> findAll(Pageable page) {
-        Page<User> list = userService.findAll(page);
+    public ResponseEntity<Page<T>> findAll(Pageable page) {
+        Page<T> list = userService.findAll(page);
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value = "/{id}")
