@@ -2,6 +2,7 @@ package com.webserver.webserver.services;
 
 import com.webserver.webserver.entities.Order;
 import com.webserver.webserver.repositories.OrderRepository;
+import com.webserver.webserver.services.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class OrderService {
+public class OrderService implements ServiceImpl<Order> {
 
     private final OrderRepository orderRepository;
 
