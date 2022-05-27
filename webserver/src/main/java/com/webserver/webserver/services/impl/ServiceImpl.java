@@ -1,6 +1,5 @@
 package com.webserver.webserver.services.impl;
 
-import com.webserver.webserver.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

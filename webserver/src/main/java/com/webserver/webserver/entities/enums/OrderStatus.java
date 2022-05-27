@@ -2,28 +2,29 @@ package com.webserver.webserver.entities.enums;
 
 public enum OrderStatus {
 
-    WAITING_PAYMENT(1),
-    PAID(2),
-    SHIPPED(3),
-    DELIVERED(4),
-    CANCELED(5);
+    WAITING_PAYMENT("Aguardando Pagamento"),
+    PAID("Pago"),
+    SHIPPED("Enviado"),
+    DELIVERED("Entregue"),
+    CANCELED("Cancelado");
 
-    private int code;
+    private String description;
 
-    private OrderStatus(int code) {
-        this.code = code;
+    private OrderStatus(String description) {
+        this.description = description;
     }
 
-    public int getCode() {
-        return code;
+    public String getDescription() {
+        return description;
     }
 
-    public static OrderStatus valueOf(int code) {
+    public static OrderStatus content(String description) {
         for (OrderStatus value : OrderStatus.values()) {
-            if (value.getCode() == code) {
+            if (value.getDescription().equals(description)) {
                 return value;
             }
         }
-        throw new IllegalArgumentException("Invalid order status code!");
+        //fazer exception handler
+        throw new IllegalArgumentException("Invalid order status!");
     }
 }

@@ -24,11 +24,10 @@ public class Order extends AbstractEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    private Integer orderStatus;
+    private String orderStatus;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
-
 
     public Order(Instant moment, OrderStatus orderStatus, User client) {
         super();
@@ -38,12 +37,12 @@ public class Order extends AbstractEntity {
     }
 
     public OrderStatus getOrderStauts() {
-        return OrderStatus.valueOf(orderStatus);
+        return OrderStatus.content(orderStatus);
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
         if (orderStatus != null) {
-            this.orderStatus = orderStatus.getCode();
+            this.orderStatus = orderStatus.getDescription();
         }
     }
 }
