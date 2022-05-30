@@ -1,5 +1,6 @@
 package com.webserver.webserver.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.Instant;
 
-@EqualsAndHashCode(callSuper = true,  onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class Payment extends AbstractEntity {
 
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;

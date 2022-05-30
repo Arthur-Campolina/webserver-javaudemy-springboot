@@ -48,8 +48,12 @@ public class Order extends AbstractEntity {
         return items;
     }
 
-    public OrderStatus getOrderStauts() {
-        return OrderStatus.content(orderStatus);
+    public Double getTotal(){
+        double sum = 0;
+        for(OrderItem x : items) {
+           sum += x.getSubTotal();
+        }
+        return sum;
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
