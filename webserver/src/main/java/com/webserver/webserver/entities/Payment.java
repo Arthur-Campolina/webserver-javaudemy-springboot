@@ -1,21 +1,25 @@
 package com.webserver.webserver.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.Instant;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@EqualsAndHashCode(callSuper = true,  onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_payments")
 public class Payment extends AbstractEntity {
 
-    private Date moment;
+    private Instant moment;
+
+    @OneToOne
+    @MapsId
+    private Order order;
 }
