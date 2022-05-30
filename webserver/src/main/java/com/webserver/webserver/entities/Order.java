@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.webserver.webserver.entities.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @AllArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "tb_orders")
 public class Order extends AbstractEntity {

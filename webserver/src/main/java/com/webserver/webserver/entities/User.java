@@ -25,6 +25,7 @@ public class User extends AbstractEntity {
     private String email;
     private String phone;
     private String password;
+
     @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
