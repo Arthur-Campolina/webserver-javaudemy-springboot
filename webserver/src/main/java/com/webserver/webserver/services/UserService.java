@@ -24,4 +24,9 @@ public class UserService implements ServiceImpl<User> {
         Optional<User> obj = userRepository.findById(id);
         return obj.get();
     }
+
+    public User isert(User obj) {
+        return userRepository.save(obj);
+    }
+
 }

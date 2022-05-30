@@ -24,4 +24,8 @@ public class ProductService implements ServiceImpl<Product> {
         Optional<Product> obj = productRepository.findById(id);
         return obj.get();
     }
+
+    public Product isert(Product obj) {
+        return productRepository.save(obj);
+    }
 }

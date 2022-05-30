@@ -24,4 +24,8 @@ public class CategoryService implements ServiceImpl<Category> {
         Optional<Category> obj = categoryRepository.findById(id);
         return obj.get();
     }
+
+    public Category isert(Category obj) {
+        return categoryRepository.save(obj);
+    }
 }

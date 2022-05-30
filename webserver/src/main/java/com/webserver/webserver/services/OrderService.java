@@ -24,4 +24,8 @@ public class OrderService implements ServiceImpl<Order> {
         Optional<Order> obj = orderRepository.findById(id);
         return obj.get();
     }
+
+    public Order isert(Order obj) {
+        return orderRepository.save(obj);
+    }
 }
