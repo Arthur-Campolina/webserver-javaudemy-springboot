@@ -24,6 +24,7 @@ public class User extends AbstractEntity {
     @Column(unique = true)
     private String email;
     private String phone;
+    @Setter(AccessLevel.PRIVATE)
     private String password;
 
     @JsonIgnore
@@ -35,6 +36,10 @@ public class User extends AbstractEntity {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.password = password;
+    }
+
+    public void changePassword(String password) {
         this.password = password;
     }
 }

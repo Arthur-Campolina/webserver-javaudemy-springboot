@@ -1,14 +1,10 @@
 package com.webserver.webserver.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)

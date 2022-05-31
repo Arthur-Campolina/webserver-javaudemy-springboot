@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -31,5 +32,17 @@ public class UserService implements ServiceImpl<User> {
 
     public void delete(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    public User update(Integer id, User obj) {
+        User entity = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
+        updateUser(entity, obj);
+        return userRepository.save(entity);
+    }
+
+    private void updateUser(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 }

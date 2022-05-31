@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -31,5 +32,14 @@ public class CategoryService implements ServiceImpl<Category> {
 
     public void delete(Integer id) {
         categoryRepository.deleteById(id);
+    }
+
+    public Category update(Integer id, Category obj) {
+        Category entity = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
+        updateCategory(entity, obj);
+        return categoryRepository.save(entity);
+    }
+    public void updateCategory(Category entity, Category obj) {
+        entity.setName(obj.getName());
     }
 }
