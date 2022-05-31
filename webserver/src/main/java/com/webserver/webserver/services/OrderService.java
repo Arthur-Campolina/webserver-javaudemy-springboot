@@ -25,7 +25,11 @@ public class OrderService implements ServiceImpl<Order> {
         return obj.get();
     }
 
-    public Order isert(Order obj) {
-        return orderRepository.save(obj);
+    public Order isert(Order order) {
+        return orderRepository.save(order);
+    }
+
+    public void delete(Integer id) {
+       orderRepository.deleteById(id);
     }
 }

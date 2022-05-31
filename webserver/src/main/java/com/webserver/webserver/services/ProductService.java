@@ -28,4 +28,8 @@ public class ProductService implements ServiceImpl<Product> {
     public Product isert(Product obj) {
         return productRepository.save(obj);
     }
+
+    public void delete(Integer id) {
+        productRepository.deleteById(id);
+    }
 }

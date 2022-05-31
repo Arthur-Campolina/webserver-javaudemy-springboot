@@ -28,4 +28,8 @@ public class CategoryService implements ServiceImpl<Category> {
     public Category isert(Category obj) {
         return categoryRepository.save(obj);
     }
+
+    public void delete(Integer id) {
+        categoryRepository.deleteById(id);
+    }
 }

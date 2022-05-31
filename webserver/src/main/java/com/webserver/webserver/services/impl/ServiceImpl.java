@@ -8,4 +8,5 @@ public interface ServiceImpl<T> {
     Page<T> findAll(Pageable page);
     T findById(Integer id);
     T isert(T obj);
+    void delete(Integer id);
 }
