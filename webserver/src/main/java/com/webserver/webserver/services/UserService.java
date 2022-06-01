@@ -2,9 +2,12 @@ package com.webserver.webserver.services;
 
 import com.webserver.webserver.entities.User;
 import com.webserver.webserver.repositories.UserRepository;
+import com.webserver.webserver.services.exceptions.DatabaseException;
 import com.webserver.webserver.services.exceptions.ResourceNotFoundException;
 import com.webserver.webserver.services.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,7 +35,13 @@ public class UserService implements ServiceImpl<User> {
     }
 
     public void delete(Integer id) {
+        try {
         userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Integer id, User obj) {
