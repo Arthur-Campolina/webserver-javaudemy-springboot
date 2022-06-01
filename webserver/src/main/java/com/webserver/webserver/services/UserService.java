@@ -2,6 +2,7 @@ package com.webserver.webserver.services;
 
 import com.webserver.webserver.entities.User;
 import com.webserver.webserver.repositories.UserRepository;
+import com.webserver.webserver.services.exceptions.ResourceNotFoundException;
 import com.webserver.webserver.services.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,8 +23,8 @@ public class UserService implements ServiceImpl<User> {
     }
 
     public User findById(Integer id) {
-        Optional<User> obj = userRepository.findById(id);
-        return obj.get();
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        return user;
     }
 
     public User isert(User obj) {
@@ -35,7 +36,7 @@ public class UserService implements ServiceImpl<User> {
     }
 
     public User update(Integer id, User obj) {
-        User entity = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
+        User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         updateUser(entity, obj);
         return userRepository.save(entity);
     }
