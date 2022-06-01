@@ -12,9 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Service
 public class UserService implements ServiceImpl<User> {
@@ -45,9 +42,9 @@ public class UserService implements ServiceImpl<User> {
     }
 
     public User update(Integer id, User obj) {
-        User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        updateUser(entity, obj);
-        return userRepository.save(entity);
+            User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+            updateUser(entity, obj);
+            return userRepository.save(entity);
     }
 
     private void updateUser(User entity, User obj) {
