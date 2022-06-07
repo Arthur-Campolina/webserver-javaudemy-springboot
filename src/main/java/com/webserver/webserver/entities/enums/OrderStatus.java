@@ -24,7 +24,6 @@ public enum OrderStatus {
                 return value;
             }
         }
-        //fazer exception handler
         throw new IllegalArgumentException("Invalid order status!");
     }
 }
