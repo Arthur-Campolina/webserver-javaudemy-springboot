@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@ToString
 @Entity
 @Table(name = "tb_users")
 public class User extends AbstractEntity {

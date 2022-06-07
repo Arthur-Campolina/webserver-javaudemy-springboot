@@ -1,6 +1,8 @@
-package com.webserver.webserver.entities;
+package com.webserver.webserver.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.webserver.webserver.entities.Order;
+import com.webserver.webserver.entities.OrderItem;
 import com.webserver.webserver.entities.enums.OrderStatus;
 import lombok.*;
 
@@ -9,33 +11,32 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity
-@Table(name = "tb_orders")
-public class Order extends AbstractEntity {
+@EqualsAndHashCode
+public class OrderDTO {
 
+    private Integer id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     private String orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private User client;
+    private UserDTO client;
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private Payment payment;
+    private PaymentDTO payment;
 
-    public Double getTotal(){
+    public Double getTotal() {
         double sum = 0;
-        for(OrderItem x : items) {
-           sum += x.getSubTotal();
+        for (OrderItem x : items) {
+            sum += x.getSubTotal();
         }
         return sum;
     }
@@ -44,5 +45,13 @@ public class Order extends AbstractEntity {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getDescription();
         }
+    }
+
+    public OrderDTO(Order order) {
+        this.id = order.getId();
+        this.moment = order.getMoment();
+        this.orderStatus = order.getOrderStatus();
+        this.items = order.getItems();
+        this.payment.setId(order.getPayment().getId());
     }
 }
